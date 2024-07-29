@@ -27,7 +27,7 @@ const texture = LoadTextureFromImage(LoadImage("texture2.png"))
 
   var maze = LoadModelFromMesh(mazeM)
 
-  maze.materials[0].maps[MATERIAL_DIFFUSE].texture = texture;
+  maze.materials[0] = texture;
   console.log(maze) 
 
 SetTargetFPS(60)
