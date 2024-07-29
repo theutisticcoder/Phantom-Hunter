@@ -4,65 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phantom Hunter</title>
-    <script src="
-    https://cdn.jsdelivr.net/npm/raylib@0.14.0/index.min.js
-    "></script>
+    <script type="module" src="https://konsumer.js.org/raylib-wasm/raylib.js"></script>
+
 </head>
 <body>
-  <canvas id="raylib-canvas"></canvas>
-<script>
-  window.onload = async function() {
-    // Initialize raylib
+    <raylib-game fill> 
+    
+const InitGame = async () => {
 
-    initWindow(800, 600, "raylib-wasm Camera Example");
-    setTargetFPS(60);
+InitWindow(800, 800, "Phantom Hunter")
+}
 
-    // Create a camera
-    const camera = {
-        position: { x: 10.0, y: 10.0, z: 10.0 },
-        target: { x: 0.0, y: 0.0, z: 0.0 },
-        up: { x: 0.0, y: 1.0, z: 0.0 },
-        fovy: 45.0,
-        type: CAMERA_PERSPECTIVE
-    };
-    const texture = loadTextureFromImage(loadImage("texture2.png"))
-  var mazeM = genMeshCubicmap(loadImage("maze.png"), vector3(1,1,1));
+const UpdateGame =  () => {   
+
+const camera = new Camera(
+  new Vector3(4, 2, 4),
+  new Vector3(0, 1.8, 0),
+  new Vector3(0, 1, 0),
+  60,
+  CAMERA_PERSPECTIVE
+)
+const texture = LoadTexture("texture2.png")
+  var mazeM = GenMeshCubicmap(LoadImage("maze.png"), new Vector3(1,1,1));
 
   var maze = LoadModelFromMesh(mazeM)
 
-  maze.texture = texture;
-    function update() {
-        // Update camera controls (e.g., with keyboard inputs)
-       updateCamera(camera, CAMERA_FIRST_PERSON)
+  maze.materials[0] = texture;
+  console.log(maze) 
 
-        // Begin drawing
-        beginDrawing();
-        clearBackground(RAYWHITE);
 
-        // Begin 3D mode
-        beginMode3D(camera);
-        
-        // Draw a simple 3D object
-        drawModel(maze,{ x: 0, y: 0, z: 0 }, 1,  BLACK);
+  UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
+  // ----------------------------------------------------------------------------------
 
-        // End 3D mode
-        endMode3D();
+  // Draw
+  // ----------------------------------------------------------------------------------
+  BeginDrawing()
 
-        // Draw 2D text
-        drawText("Use arrow keys to move the camera", 10, 10, 20, DARKGRAY);
+  ClearBackground(RAYWHITE)
+  BeginMode3D(camera);
 
-        // End drawing
-        endDrawing();
-    }
-
-    // Main loop
-    function mainLoop() {
-        update();
-        requestAnimationFrame(mainLoop);
-    }
-    mainLoop();
-};
-
-</script>
+DrawModel(maze, new Vector3(0, 0, 0), 1, BLACK)
+EndMode3D();
+    EndDrawing()
+}
+    </raylib-game>
 </body>
 </html>
