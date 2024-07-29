@@ -13,8 +13,6 @@
 const InitGame = async () => {
 
 InitWindow(800, 800, "Phantom Hunter")
-}
-
 const camera = new Camera(
   new Vector3(4, 2, 4),
   new Vector3(0, 1.8, 0),
@@ -28,6 +26,9 @@ const texture = LoadTexture("texture2.png")
   var maze = LoadModelFromMesh(mazeM)
 
   maze.texture = texture;
+}
+
+
 const UpdateGame =  (ts) => {   
 
 
