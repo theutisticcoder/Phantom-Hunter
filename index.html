@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phantom Hunter</title>
-    <script src="https://cdn.jsdelivr.net/gh/raysan5/raylib/raylib-wasm/raylib.min.js"></script>
-
+    <script src="
+    https://cdn.jsdelivr.net/npm/raylib@0.14.0/index.min.js
+    "></script>
 </head>
 <body>
   <canvas id="raylib-canvas"></canvas>
 <script>
   window.onload = async function() {
     // Initialize raylib
-    const canvas = document.getElementById('raylib-canvas');
-    const rl = await Raylib.load(canvas);
 
-    rl.initWindow(800, 600, "raylib-wasm Camera Example");
-    rl.setTargetFPS(60);
+    initWindow(800, 600, "raylib-wasm Camera Example");
+    setTargetFPS(60);
 
     // Create a camera
     const camera = {
@@ -24,36 +23,36 @@
         target: { x: 0.0, y: 0.0, z: 0.0 },
         up: { x: 0.0, y: 1.0, z: 0.0 },
         fovy: 45.0,
-        type: rl.CAMERA_PERSPECTIVE
+        type: CAMERA_PERSPECTIVE
     };
-    const texture = rl.loadTextureFromImage(rl.loadImage("texture2.png"))
-  var mazeM = rl.genMeshCubicmap(rl.loadImage("maze.png"), rl.vector3(1,1,1));
+    const texture = loadTextureFromImage(loadImage("texture2.png"))
+  var mazeM = genMeshCubicmap(loadImage("maze.png"), vector3(1,1,1));
 
-  var maze = rl.LoadModelFromMesh(mazeM)
+  var maze = LoadModelFromMesh(mazeM)
 
   maze.texture = texture;
     function update() {
         // Update camera controls (e.g., with keyboard inputs)
-       rl.updateCamera(camera, rl.CAMERA_FIRST_PERSON)
+       updateCamera(camera, CAMERA_FIRST_PERSON)
 
         // Begin drawing
-        rl.beginDrawing();
-        rl.clearBackground(rl.RAYWHITE);
+        beginDrawing();
+        clearBackground(RAYWHITE);
 
         // Begin 3D mode
-        rl.beginMode3D(camera);
+        beginMode3D(camera);
         
         // Draw a simple 3D object
-        rl.drawModel(maze,{ x: 0, y: 0, z: 0 }, 1,  rl.BLACK);
+        drawModel(maze,{ x: 0, y: 0, z: 0 }, 1,  BLACK);
 
         // End 3D mode
-        rl.endMode3D();
+        endMode3D();
 
         // Draw 2D text
-        rl.drawText("Use arrow keys to move the camera", 10, 10, 20, rl.DARKGRAY);
+        drawText("Use arrow keys to move the camera", 10, 10, 20, DARKGRAY);
 
         // End drawing
-        rl.endDrawing();
+        endDrawing();
     }
 
     // Main loop
