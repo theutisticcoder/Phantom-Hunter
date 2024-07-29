@@ -8,13 +8,15 @@
 
 </head>
 <body>
-    <raylib-game>
+    <raylib-game fill> 
     
 const InitGame = async () => {
 
 InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
 }
-const screenWidth = 800
+
+const UpdateGame =  () => {   
+  const screenWidth = 800
 const screenHeight = 450
 const camera = new Camera(
   new Vector3(4, 2, 4),
@@ -33,7 +35,7 @@ const texture = LoadTextureFromImage(LoadImage("texture2.png"))
 
 var mon = LoadModel("monsteglb")
 
-const UpdateGame = async () => {    UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
+  UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
   // ----------------------------------------------------------------------------------
 
   // Draw
