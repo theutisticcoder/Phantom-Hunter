@@ -15,12 +15,12 @@ const InitGame = async () => {
 InitWindow(800, 800, "Phantom Hunter")
 }
 
-const UpdateGame =  () => {   
+const UpdateGame =  (ts) => {   
 
 const camera = new Camera(
-  {4, 2, 4},
-  {0, 1.8, 0},
- {0, 1, 0},
+  new Vector3(4, 2, 4),
+  new Vector3(0, 1.8, 0),
+  new Vector3(0, 1, 0),
   60,
   CAMERA_PERSPECTIVE
 )
@@ -42,6 +42,7 @@ const texture = LoadTexture("texture2.png")
 
   ClearBackground(RAYWHITE)
   BeginMode3D(camera);
+  DrawFPS(10, 10)
 
 DrawModel(maze, new Vector3(0, 0, 0), 1, BLACK)
 EndMode3D();
