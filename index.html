@@ -24,7 +24,7 @@ const camera = new Camera(
   60,
   CAMERA_PERSPECTIVE
 )
-const texture = LoadTextureFromImage(LoadImage("texture2.png"))
+const texture = LoadTexture("texture2.png")
   var mazeM = GenMeshCubicmap(LoadImage("maze.png"), new Vector3(1,1,1));
 
   var maze = LoadModelFromMesh(mazeM)
