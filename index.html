@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Hunter</title>
+    <script type="module" src="https://konsumer.js.org/raylib-wasm/raylib.js"></script>
+
+</head>
+<body>
+    <raylib-game>
+    
+const InitGame = async () => {
+const screenWidth = 800
+const screenHeight = 450
+InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window")
+
+const camera = new Camera(
+  new Vector3(4, 2, 4),
+  new Vector3(0, 1.8, 0),
+  new Vector3(0, 1, 0),
+  60,
+  CAMERA_PERSPECTIVE
+)
+const texture = LoadTextureFromImage(LoadImage("texture2.png"))
+  var mazeM = GenMeshCubicmap(LoadImage("maze.png"), new Vector3(1,1,1));
+
+  var maze = LoadModelFromMesh(mazeM)
+
+  maze.materials[0].maps[MATERIAL_DIFFUSE].texture = texture;
+  console.log(maze) 
+
+SetTargetFPS(60)
+var mon = LoadModel("monsteglb")
+}
+const UpdateGame = async () => {    UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
+  // ----------------------------------------------------------------------------------
+
+  // Draw
+  // ----------------------------------------------------------------------------------
+  BeginDrawing()
+
+  ClearBackground(RAYWHITE)
+  BeginMode3D(camera);
+
+DrawModel(maze, new Vector3(0, 0, 0), 1, BLACK)
+EndMode3D();
+    EndDrawing()
+}
+    </raylib-game>
+</body>
+</html>
