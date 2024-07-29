@@ -26,28 +26,29 @@ const texture = LoadTexture("texture2.png")
   var maze = LoadModelFromMesh(mazeM)
 
   maze.texture = texture;
+  const UpdateGame =  (ts) => {   
+
+
+
+    UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
+    // ----------------------------------------------------------------------------------
+  
+    // Draw
+    // ----------------------------------------------------------------------------------
+    BeginDrawing()
+  
+    ClearBackground(RAYWHITE)
+    BeginMode3D(camera);
+    DrawFPS(10, 10)
+  
+  DrawModel(maze, new Vector3(0, 0, 0), 1, BLACK)
+  EndMode3D();
+      EndDrawing()
+  }
 }
 
 
-const UpdateGame =  (ts) => {   
 
-
-
-  UpdateCamera(camera, CAMERA_FIRST_PERSON) // Update camera
-  // ----------------------------------------------------------------------------------
-
-  // Draw
-  // ----------------------------------------------------------------------------------
-  BeginDrawing()
-
-  ClearBackground(RAYWHITE)
-  BeginMode3D(camera);
-  DrawFPS(10, 10)
-
-DrawModel(maze, new Vector3(0, 0, 0), 1, BLACK)
-EndMode3D();
-    EndDrawing()
-}
     </raylib-game>
 </body>
 </html>
